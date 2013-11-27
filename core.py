@@ -16,7 +16,7 @@ import time
 stdscr = curses.initscr()
 stdscr.refresh()
 h, w = stdscr.getmaxyx()
-curses.start_color()
+#curses.start_color()
 
 def wGetchar(win = None):
     if win is None: win = stdscr
@@ -36,16 +36,16 @@ def wait_a_while():
 def mkpanel(color, rows, cols, tly, tlx):
     win = curses.newwin(rows, cols, tly, tlx)
     pan = panel.new_panel(win)
-    if curses.has_colors():
-        if color == curses.COLOR_BLUE:
-            fg = curses.COLOR_WHITE
-        else:
-            fg = curses.COLOR_BLACK
-        bg = color
-        curses.init_pair(color, fg, bg)
-        #win.bkgdset(ord('b'), curses.color_pair(color))
-    else:
-        win.bkgdset(ord('a'), curses.A_BOLD)
+    #if curses.has_colors():
+    #    if color == curses.COLOR_BLUE:
+    #        fg = curses.COLOR_WHITE
+    #    else:
+    #        fg = curses.COLOR_BLACK
+    #    bg = color
+    #    curses.init_pair(color, fg, bg)
+    #    #win.bkgdset(ord('b'), curses.color_pair(color))
+    #else:
+    #win.bkgdset(ord('a'), curses.A_BOLD)
 
     return pan
 
@@ -87,7 +87,6 @@ def fill_panel(pan, g=b):
         except:
             return
         win.move(y, 1)
-        a = a.strip().split()
         win.addstr(a)
         win.clrtoeol()
         win.box()
